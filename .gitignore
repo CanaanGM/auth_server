@@ -489,3 +489,5 @@ guild_db-data
 .vscode
 
 git-filter-repo.py
+nextcloud
+nginx
