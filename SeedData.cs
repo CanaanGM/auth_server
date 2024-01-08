@@ -82,6 +82,38 @@ public class SeedData
             {
                 Log.Debug("bob already exists");
             }
+            var canaan = userMgr.FindByNameAsync("canaan").Result;
+            if (canaan == null)
+            {
+                canaan = new ApplicationUser
+                {
+                    UserName = "canaan",
+                    Email = "canaanSmith@email.com",
+                    EmailConfirmed = true
+                };
+                var result = userMgr.CreateAsync(canaan, "Pass123$").Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+
+                result = userMgr.AddClaimsAsync(canaan, new Claim[]{
+                            new Claim(JwtClaimTypes.Name, "canaan Smith"),
+                            new Claim(JwtClaimTypes.GivenName, "canaan"),
+                            new Claim(JwtClaimTypes.FamilyName, "Smith"),
+                            new Claim(JwtClaimTypes.WebSite, "http://canaan.com"),
+                            new Claim("location", "somewhere")
+                        }).Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+                Log.Debug("canaan created");
+            }
+            else
+            {
+                Log.Debug("canaan already exists");
+            }
         }
     }
 }
