@@ -487,3 +487,4 @@ $RECYCLE.BIN/
 
 guild_db-data
 .vscode
+.env
