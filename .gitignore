@@ -487,4 +487,5 @@ $RECYCLE.BIN/
 
 guild_db-data
 .vscode
-.env
+
+git-filter-repo.py
